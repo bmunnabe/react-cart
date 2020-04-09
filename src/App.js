@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import Products from './components/products';
-import Navigator from './components/navigator';
+import Products from './component/products';
+import Navigator from './component/navigator';
+import { productList } from './assets/data/products';
 
 export default class App extends Component {
 	state = {
-		products: [ { id: 1, value: 4 }, { id: 2, value: 0 }, { id: 3, value: 0 }, { id: 4, value: 0 } ]
+		products: productList
 	};
 
 	getIndexOfSelectedProduct = (product) => {
@@ -28,9 +29,10 @@ export default class App extends Component {
 
 	handleIncrement = (product) => {
 		const index = this.getIndexOfSelectedProduct(product);
+		const value = product.value + 1;
 		const products = [
 			...this.state.products.slice(0, index),
-			{ id: product.id, value: product.value + 1 },
+			{ ...product, value },
 			...this.state.products.slice(index + 1)
 		];
 		this.setState({ products });
@@ -41,7 +43,7 @@ export default class App extends Component {
 		const value = product.value - 1 <= 0 ? 0 : product.value - 1;
 		const products = [
 			...this.state.products.slice(0, index),
-			{ id: product.id, value },
+			{ ...product, value },
 			...this.state.products.slice(index + 1)
 		];
 		this.setState({ products });
@@ -50,7 +52,7 @@ export default class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<Navigator />
+				<Navigator products={this.state.products} />
 				<main className="container">
 					<Products
 						onAddItem={this.handleIncrement}
