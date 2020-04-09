@@ -3,17 +3,7 @@ import AddItem from './add-item';
 import RemoveItem from './remove-item';
 
 export default function Product(props) {
-	const { product, onAddItem, onDelete, onRemoveItem } = props;
-	const style = {
-		button: {
-			padding: 50
-		}
-	};
-	const divStyle = {
-		color: 'blue',
-		// backgroundImage: 'url(' + imgUrl + ')',
-		padding: 100
-	};
+	const { product, onAddItem, onRemoveItem } = props;
 	const classesName = ({ value }) => (value === 0 ? 'badge m-2 badge-warning' : 'badge m-2 badge-primary');
 	return (
 		<React.Fragment>

@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './App.css';
 import Products from './component/products';
 import Navigator from './component/navigator';
 import { productList } from './assets/data/products';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import About from './component/about';
+import Contact from './component/contact';
 
 export default class App extends Component {
 	state = {
@@ -51,18 +54,32 @@ export default class App extends Component {
 
 	render() {
 		return (
-			<div className="App">
-				<Navigator products={this.state.products} />
-				<main className="container">
-					<Products
-						onAddItem={this.handleIncrement}
-						onRemoveItem={this.handleDecrement}
-						onDelete={this.handleDelete}
-						onReset={this.handleReset}
-						products={this.state.products}
-					/>
-				</main>
-			</div>
+			<Fragment>
+				<Router>
+					<Navigator products={this.state.products} />
+					<div className="App">
+						<main className="container">
+							<Switch>
+								<Route path="/about">
+									<About />
+								</Route>
+								<Route path="/contact">
+									<Contact />
+								</Route>
+								<Route path="/">
+									<Products
+										onAddItem={this.handleIncrement}
+										onRemoveItem={this.handleDecrement}
+										onDelete={this.handleDelete}
+										onReset={this.handleReset}
+										products={this.state.products}
+									/>
+								</Route>
+							</Switch>
+						</main>
+					</div>
+				</Router>
+			</Fragment>
 		);
 	}
 }
