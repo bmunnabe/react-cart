@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 const Products = lazy(() => import('./component/products'));
 const Contact = lazy(() => import('./component/contact'));
 const About = lazy(() => import('./component/about'));
+const Checkout = lazy(() => import('./component/checkout'));
 
 export default class App extends Component {
 	state = {
@@ -63,6 +64,9 @@ export default class App extends Component {
 						<main className="container">
 							<Suspense fallback={<div>Loading...</div>}>
 								<Switch>
+									<Route path="/checkout">
+										<Checkout />
+									</Route>
 									<Route path="/about">
 										<About />
 									</Route>

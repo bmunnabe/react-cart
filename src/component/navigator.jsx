@@ -14,11 +14,11 @@ export default function Navigator(props) {
 			},
 			{ qty: 0, items: 0 }
 		);
-		let classes = total.qty > 0 ? 'btn btn-success' : 'btn';
+		let classes = total.qty > 0 ? 'btn btn-success nav-link' : 'btn nav-link';
 		const styleTxt = { marginLeft: 5, display: 'flex', flexDirection: 'column', justifyContent: 'center' };
 		const styleBtn = { display: 'flex', alignItems: 'center' };
 		return (
-			<span>
+			<Link className="nav-link" to="/checkout">
 				<button style={styleBtn} className={classes}>
 					<FontAwesomeIcon size="2x" icon={faShoppingCart} />
 					<span style={styleTxt}>
@@ -26,7 +26,7 @@ export default function Navigator(props) {
 						<span>Qty : {total.qty}</span>
 					</span>
 				</button>
-			</span>
+			</Link>
 		);
 	};
 
@@ -37,19 +37,19 @@ export default function Navigator(props) {
 			</div>
 			<ul className="nav justify-content-end">
 				<li className="nav-item">
-					<span className="nav-link active">
-						<Link to="/">Home</Link>
-					</span>
+					<Link className="nav-link" to="/">
+						Home
+					</Link>
 				</li>
 				<li className="nav-item">
-					<span className="nav-link">
-						<Link to="/about">About</Link>
-					</span>
+					<Link className="nav-link" to="/about">
+						About
+					</Link>
 				</li>
 				<li className="nav-item">
-					<span className="nav-link">
-						<Link to="/contact">Contact</Link>
-					</span>
+					<Link className="nav-link" to="/contact">
+						Contact
+					</Link>
 				</li>
 				<li className="nav-item">{countOfSelectedProduct(products)}</li>
 			</ul>
