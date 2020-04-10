@@ -1,11 +1,13 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, Suspense, lazy } from 'react';
 import './App.css';
-import Products from './component/products';
+
 import Navigator from './component/navigator';
 import { productList } from './assets/data/products';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import About from './component/about';
-import Contact from './component/contact';
+
+const Products = lazy(() => import('./component/products'));
+const Contact = lazy(() => import('./component/contact'));
+const About = lazy(() => import('./component/about'));
 
 export default class App extends Component {
 	state = {
@@ -59,23 +61,25 @@ export default class App extends Component {
 					<Navigator products={this.state.products} />
 					<div className="App">
 						<main className="container">
-							<Switch>
-								<Route path="/about">
-									<About />
-								</Route>
-								<Route path="/contact">
-									<Contact />
-								</Route>
-								<Route path="/">
-									<Products
-										onAddItem={this.handleIncrement}
-										onRemoveItem={this.handleDecrement}
-										onDelete={this.handleDelete}
-										onReset={this.handleReset}
-										products={this.state.products}
-									/>
-								</Route>
-							</Switch>
+							<Suspense fallback={<div>Loading...</div>}>
+								<Switch>
+									<Route path="/about">
+										<About />
+									</Route>
+									<Route path="/contact">
+										<Contact />
+									</Route>
+									<Route path="/">
+										<Products
+											onAddItem={this.handleIncrement}
+											onRemoveItem={this.handleDecrement}
+											onDelete={this.handleDelete}
+											onReset={this.handleReset}
+											products={this.state.products}
+										/>
+									</Route>
+								</Switch>
+							</Suspense>
 						</main>
 					</div>
 				</Router>
