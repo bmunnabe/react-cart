@@ -14,7 +14,7 @@ export default function Navigator(props) {
 			},
 			{ qty: 0, items: 0 }
 		);
-		let classes = total.qty > 0 ? 'btn btn-success nav-link' : 'btn nav-link';
+		let classes = total.qty > 0 ? 'btn btn-success nav-link' : 'btn bt-success nav-link';
 		const styleTxt = { marginLeft: 5, display: 'flex', flexDirection: 'column', justifyContent: 'center' };
 		const styleBtn = { display: 'flex', alignItems: 'center' };
 		return (
@@ -26,6 +26,11 @@ export default function Navigator(props) {
 						<span>Qty : {total.qty}</span>
 					</span>
 				</button>
+
+				{/* <button type="button" class="btn btn-primary">
+					<FontAwesomeIcon size="2x" icon={faShoppingCart} />
+					<span class="badge badge-light">{total.items}</span>
+				</button> */}
 			</Link>
 		);
 	};

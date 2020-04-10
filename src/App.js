@@ -65,14 +65,15 @@ export default class App extends Component {
 							<Suspense fallback={<div>Loading...</div>}>
 								<Switch>
 									<Route path="/checkout">
-										<Checkout />
-									</Route>
-									<Route path="/about">
-										<About />
+										<Checkout products={this.state.products} />
 									</Route>
 									<Route path="/contact">
 										<Contact />
 									</Route>
+									<Route path="/about">
+										<About />
+									</Route>
+									<Route path="/contact"> </Route>
 									<Route path="/">
 										<Products
 											onAddItem={this.handleIncrement}
