@@ -40,7 +40,7 @@ export default function Navigator(props) {
 			<div className="navbar-header">
 				<span className="navbar-brand">MunnaCart</span>
 			</div>
-			<ul className="nav justify-content-end">
+			<ul className="nav justify-content-end" style={{ alignItems: 'center' }}>
 				<li className="nav-item">
 					<Link className="nav-link" to="/">
 						Home
